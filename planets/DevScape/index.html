@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>DevScape</title>
+  
+  <style>
+    .preview i.fas.fa-times {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #333;
+      cursor: pointer;
+      background: #fff;
+      border-radius: 50%;
+      padding: 5px;
+      z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+    }
+    .preview {
+      position: relative;
+      max-width: 90%; /* Ajustar el tamaño máximo del popup */
+      max-height: 90%; /* Ajustar el tamaño máximo del popup */
+      overflow: hidden; /* Prevenir el desplazamiento del fondo */
+      background: #f9f9f9; /* Fondo para el contenido */
+      padding: 20px; /* Espacio alrededor del contenido */
+      border-radius: 10px; /* Bordes redondeados para un mejor aspecto */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra para destacar el popup */
+      display: none; /* Ocultar inicialmente */
+    }
+    .preview-content {
+      max-height: 80vh; /* Ajustar la altura máxima del contenido */
+      overflow-y: auto; /* Permitir el desplazamiento vertical */
+    }
+    .products-preview {
+      display: none; /* Ocultar inicialmente */
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5); /* Fondo oscuro semi-transparente */
+      z-index: 999; /* Asegurar que el popup esté por encima de otros elementos */
+    }
+    .products-preview.active {
+      display: flex; /* Mostrar cuando esté activo */
+    }
+    .preview.active {
+      display: block; /* Mostrar cuando esté activo */
+    }
+    .expanded-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .expanded-image img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+    .typed-code-container {
+      position: absolute;
+      bottom: 20px; /* Ajustar según la ubicación deseada */
+      left: 20px; /* Ajustar según la ubicación deseada */
+      width: 300px; /* Ancho fijo */
+      height: 150px; /* Altura fija */
+      background-color: #1e1e1e;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+    .typed-code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      color: #fff;
+    }
+  </style>
+
+</head>
+<body>
+  <!--Header-->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="" class="navL">
+        <img src="img/LOGO DEVSCAPE.png" alt="favicon" class="navL-img" />
+        Devscape
+      </a>
+
+      <div class="navM" id="nav-menu">
+        <ul class="navList">
+          <li class="navItem">
+            <a href="#home" class="navLink active-link"> Inicio </a>
+          </li>
+          <li class="navItem">
+            <a href="#about" class="navLink"> Sobre Nosotros </a>
+          </li>
+          <li class="navItem">
+            <a href="#product" class="navLink"> ¿Por qué elegirnos? </a>
+          </li>
+          <li class="navItem">
+            <a href="#new" class="navLink"> Lista de programas </a>
+          </li>
+          <li class="navItem">
+            <a href="#download" class="navLink"> Descarga </a>
+          </li>
+        </ul>
+
+        <div class="navclose" id="nav-close">
+          <i class="bx bx-x"></i>
+        </div>
+      </div>
+
+      <div class="navToggle" id="nav-toggle">
+        <i class="bx bx-grid-alt"></i>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!--HOME-->
+    <section class="home container" id="home">
+      <div class="swiper home-swiper">
+        <div class="swiper-wrapper">
+          <section>
+            <div class="homecont grid">
+              <div class="homedata">
+                <h1 class="hometitle">Bienvenido <br />a DevScape <br /></h1>
+                <p class="homedes">Aprende y practica desarrollo web</p>
+                <div class="homebut"></div>
+              </div>
+
+              <div class="homegroup">
+                <img src="img/pngwing.com (9).png" alt="" class="homeimg" />
+                <!-- Contenedor de la animación de código -->
+                <div class="typed-code-container">
+                  <div class="typed-code" id="typed-code"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!--CATEGORY-->
+    <section class="section category">
+      <h2 class="sectiontitle">
+        Descubre lo que puedes lograr con DevScape <br />
+      </h2>
+
+      <div class="categorycontainer container grid">
+        <div class="categorydata">
+          <img src="img/DEV 07(1).png" alt="" />
+          <h3 class="categorytitle"></h3>
+          <p class="categorydescription">
+            Exploración de nuevas tecnologías y tendencias.
+          </p>
+        </div>
+
+        <div class="categorydata">
+          <img src="img/DEV 06.png" alt="" />
+          <h3 class="categorytitle"></h3>
+          <p class="categorydescription">
+            Preparación para carreras en tecnología y desarrollo web.
+          </p>
+        </div>
+
+        <div class="categorydata">
+          <img src="img/DEV_02.png" alt="" />
+          <h3 class="categorytitle"></h3>
+          <p class="categorydescription">
+            Desarrollo de sitios web y aplicaciones innovadoras.
+          </p>
+        </div>
+
+        <div class="categorydata">
+          <img src="img/categoria4.png" alt="" />
+          <h3 class="categorytitle"></h3>
+          <p class="categorydescription">
+            Mejora de habilidades en programación y diseño web.
+          </p>
+        </div>
+
+        <div class="categorydata">
+          <img src="img/categoria5.png" alt="" />
+          <h3 class="categorytitle"></h3>
+          <p class="categorydescription">
+            Contribución a proyectos de código abierto.
+          </p>
+        </div>
+
+        <div class="categorydata">
+          <img src="img/categoria6.png" alt="" />
+          <h3 class="categorytitle"></h3>
+          <p class="categorydescription">
+            Colaboración en proyectos y comunidades tecnológicas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!--ABOUT-->
+    <section class="section about" id="about">
+      <div class="aboutcontainer container grid">
+        <img src="img/carac12.png" alt="" class="aboutimg" />
+        <div class="aboutdata">
+          <h2 class="sectiontitle abouttitle">Sobre <br />nosotros</h2>
+          <p class="aboutdescription">
+            DevScape nace de la necesidad de simplificar el aprendizaje del
+            desarrollo web, especialmente para estudiantes universitarios.
+            Creamos esta distribución de sistema operativo para proporcionar
+            herramientas accesibles y comprensibles que faciliten el inicio de
+            cualquier persona en el mundo del desarrollo web. Nuestra
+            motivación proviene de nuestras propias experiencias y estamos
+            comprometidos a compartir nuestros aprendizajes para que otros
+            puedan comenzar su viaje tecnológico con confianza y facilidad.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!--PRODUCTS-->
+    <section class="section product" id="product">
+      <h2 class="sectiontitle">
+        ¿Por qué elegir DevScape para tu viaje en el desarrollo web?
+      </h2>
+
+      <div class="productcontainer container grid">
+        <div class="productcontent" data-name="app-1">
+          <img src="img/CARAC1.png" alt="" class="productimg" />
+          <h3 class="producttitle"> Entorno Completo:</h3>
+          <span class="productsubtitle">Ofrece un entorno listo para empezar a crear proyectos web desde el primer día.</span>
+          
+        </div>
+        <div class="productcontent" data-name="app-2">
+          <img src="img/CARAC2.png" alt="" class="productimg" />
+          <h3 class="producttitle">Facilidad de Uso:</h3>
+          <span class="productsubtitle">Con una interfaz intuitiva y amigable, DevScape hace que aprender y practicar el desarrollo web sea accesible para todos.</span>
+          
+        </div>
+        <div class="productcontent" data-name="app-3">
+          <img src="img/carac7.png" alt="" class="productimg" />
+          <h3 class="producttitle">Herramientas Potentes y Versátiles:</h3>
+          <span class="productsubtitle">Ofrece las herramientas más actuales listas para trabajar.</span>
+        </div>
+        <div class="productcontent" data-name="app-4">
+          <img src="img/CARAC3.png" alt="" class="productimg" />
+          <h3 class="producttitle">Comunidad de Apoyo:</h3>
+        
+          <span class="productsubtitle">Al unirte a DevScape, accedes a una red de desarrolladores apasionados listos para ayudarte en tu viaje en el desarrollo web.</span>
+          
+        </div>
+        <div class="productcontent" data-name="app-5">
+          <img src="img/carac8.png" alt="" class="productimg" />
+          <h3 class="producttitle">Flexibilidad y Personalización:</h3>
+      
+          <span class="productsubtitle">DevScape es altamente personalizable, permitiéndote adaptar el sistema operativo a tus necesidades y preferencias individuales.</span>
+          
+        </div>        
+        <div class="productcontent" data-name="app-6">
+          <img src="img/CARAC4.png" alt="" class="productimg" />
+          <h3 class="producttitle">Actualizaciones y Soporte Constantes:</h3>
+          <span class="productsubtitle">DevScape se mantiene actualizado con las ultimas tecnologias y ofrece soporte continuo.</span>
+          
+      </div>
+      </div>
+    </section>
+
+    <!--DESCUENTO-->
+    <section class="section discount" id="download">
+      <div class="discountcontainer container grid">
+        <div class="discountdata">
+          <h2 class="discounttitle">Descargar el<br />Sistema Operativo</h2>
+          <a href="img/GoatCR7.pdf" class="button" download="GoatCR7.pdf">Click Aquí para Descargar</a>
+
+        </div>
+        <img src="img/discount-img.png" alt="" class="discountimg" />
+      </div>
+    </section>
+
+    <!--LO NUEVO-->
+    <section class="section new" id="new">
+      <h2 class="sectiontitle">Lista de programas</h2>
+
+      <div class="newcontainer container">
+        <div class="swiper new-swiper">
+          <div class="swiper-wrapper">
+            <div class="newcontent swiper-slide" data-name="app-1">
+              <img src="img/visual.png" alt="" class="newimg" />
+              <h3 class="newtitle">Visual Studio Code</h3>
+            </div>
+            <div class="newcontent swiper-slide" data-name="app-2">
+              <img src="img/CLion_Logo.png" alt="" class="newimg" />
+              <h3 class="newtitle">CLion</h3>
+            </div>
+            <div class="newcontent swiper-slide" data-name="app-3">
+              <img src="img/PyCharm_Icon.svg.png" alt="" class="newimg" />
+              <h3 class="newtitle">PyCharm</h3>
+            </div>
+            <div class="newcontent swiper-slide" data-name="app-4">
+              <img src="img/Thonny_logo.png" alt="" class="newimg" />
+              <h3 class="newtitle">Thonny</h3>
+            </div>
+            <div class="newcontent swiper-slide" data-name="app-5">
+              <img src="img/CodeAcademyLogo.png" alt="" class="newimg" />
+              <h3 class="newtitle">CodeAcademy</h3>
+            </div>
+            <div class="newcontent swiper-slide" data-name="app-6">
+              <img src="img/IntelliJ_IDEA_Icon.svg.png" alt="" class="newimg" />
+              <h3 class="newtitle">IntelliJ IDEA</h3>
+            </div>
+            <div class="newcontent swiper-slide" data-name="app-7">
+              <img src="img/gpt5.png" alt="" class="newimg" />
+              <h3 class="newtitle">ChatGPT</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POPUPS -->
+    <div class="products-preview" id="products-preview">
+      <div class="preview" data-target="app-1">
+        <i class="fas fa-times close-btn"></i>
+        <div class="preview-content">
+          <img src="img/visual.png" alt="Visual Studio Code" class="popup-image"/>
+          <h3>Visual Studio Code</h3>
+          <h4>Descripción:</h4>
+          <p>Visual Studio Code (VS Code) es un editor de código fuente desarrollado por Microsoft. Es gratuito, de código abierto y soporta una gran cantidad de lenguajes de programación a través de extensiones.</p>
+          <h4>Para qué sirve:</h4>
+          <p>VS Code es utilizado para escribir y depurar código en diversos lenguajes de programación. Es altamente configurable y extensible, lo que lo hace ideal para el desarrollo web, entre otros usos.</p>
+          <h4>Lenguajes soportados:</h4>
+          <ul>
+            <li>-JavaScript</li>
+            <li>-Python</li>
+            <li>-Java</li>
+            <li>-C++</li>
+            <li>-HTML/CSS</li>
+            <li>-TypeScript</li>
+            <li>-!Y muchos más a través de extensiones!</li>
+          </ul>
+          <br>
+          <br>
+          <h4>Alcance profesional:</h4>
+          <br>
+        
+          <p>VS Code es ampliamente utilizado en la industria del desarrollo de software. Su flexibilidad y capacidad de personalización lo hacen una herramienta valiosa tanto para desarrolladores individuales como para equipos en empresas grandes y pequeñas.</p>
+          <h4>Recomendación de uso:</h4>
+          <p>Es altamente recomendable debido a su versatilidad, amplia comunidad y soporte extensivo para múltiples lenguajes y frameworks.</p>
+          <h4>Tutorial de uso:</h4>
+          <p><strong>Instalación:</strong> Descarga VS Code desde <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>. Instálalo siguiendo las instrucciones para tu sistema operativo.</p>
+          <h4><strong>Primeros pasos:</strong></h4>
+          <ol>
+            <li>1.-Abre VS Code.</li>
+            <br>
+            <li>2.-Abre una carpeta o un archivo existente usando "File" > "Open Folder".</li>
+            <br>
+            <img src="img/openfoldervs.png" alt="Visual Studio Code" class="popup-image"/>
+          </ol>
+          <br>
+          <br>
+          <h4><strong>Configuración inicial:</strong></h4>
+          <ol>
+            <li>1.-Instala extensiones esenciales como Prettier (formateador de código) y ESLint (linter).</li>
+            <img src="img/marketvs.png" alt="Visual Studio Code" class="popup-image"/>
+            <li>2.-Configura tu entorno de desarrollo para el lenguaje que estás usando a través de las preferencias.</li>
+          </ol>
+          <br>
+          <h4><strong>Escribir código:</strong></h4>
+          <ol>
+            <li>1.-Crea un nuevo archivo con "File" > "New File".</li>
+            <li>2.-Selecciona el lenguaje de programación o deja que VS Code lo detecte automáticamente.</li>
+          </ol>
+          <br>
+          <h4><strong>Depuración:</strong></h4>
+          <ol>
+            <li>Configura puntos de interrupción y usa el panel de depuración para ejecutar y depurar tu código.</li>
+          </ol>
+          <img src="img/debugvs.png" alt="Visual Studio Code" class="popup-image"/>
+          <br>
+          <h4><strong>Extensiones:</strong></h4>
+          <ol>
+            <li>Explora la Marketplace de extensiones para añadir funcionalidades adicionales según tus necesidades.</li>
+          </ol>
+          <br>
+          <br>
+          <br>
+          <h4>Como grupo, esta es nuestra app favorita. ¡Altamente recomendada!.</h4>
+          </div>
+        </div>
+
+      <div class="preview" data-target="app-2">
+        <i class="fas fa-times close-btn"></i>
+        <div class="preview-content">
+          <img src="img/CLion_Logo.png" alt="CLion" class="popup-image"/>
+          <h3>CLion</h3>
+          <h4>Descripción:</h4>
+          <p>CLion es un poderoso IDE desarrollado por JetBrains, especialmente diseñado para C y C++.</p>
+          <h4>Para qué sirve:</h4>
+          <p>CLion facilita el desarrollo de software en C y C++, proporcionando herramientas avanzadas de depuración y análisis de código.</p>
+          <h4>Lenguajes soportados:</h4>
+          <ul>
+            <li>-C</li>
+            <li>-C++</li>
+            <li>-Python (con plugin)</li>
+            <li>-Rust (con plugin)</li>
+            <li>!Y más a través de plugins!</li>
+          </ul>
+          <h4>Alcance profesional:</h4>
+          <p>Es utilizado en la industria para el desarrollo de aplicaciones de alto rendimiento y sistemas embebidos.</p>
+          <h4>Recomendación de uso:</h4>
+          <p>Recomendado para desarrolladores serios de C y C++ que buscan un entorno de desarrollo integrado robusto y fiable.</p>
+          <h4>Tutorial de uso:</h4>
+          <p><strong>Instalación:</strong> Descarga CLion desde <a href="https://www.jetbrains.com/clion/" target="_blank">JetBrains CLion</a>. Instálalo siguiendo las instrucciones.</p>
+          <h4><strong>Primeros pasos:</strong></h4>
+          <ol>
+            <li>1.-Abre CLion.</li>
+            <li>2.-Crea un nuevo proyecto o abre uno existente.</li>
+          </ol>
+          <h4><strong>Configuración inicial:</strong></h4>
+          <ol>
+            <li>1.-Configura el compilador y las herramientas de desarrollo en "Settings".</li>
+            <li>2.-Instala plugins adicionales si es necesario.</li>
+          </ol>
+          <h4><strong>Escribir código:</strong></h4>
+          <ol>
+            <li>1.-Crea un nuevo archivo fuente en C o C++.</li>
+            <li>2.-Escribe y guarda tu código.</li>
+          </ol>
+          <h4><strong>Depuración:</strong></h4>
+          <ol>
+            <li>Configura puntos de interrupción y usa el depurador integrado para ejecutar tu código.</li>
+          </ol>
+          <h4><strong>Extensiones:</strong></h4>
+          <ol>
+            <li>Explora e instala plugins desde el marketplace para ampliar las funcionalidades de CLion.</li>
+          </ol>
+          <h4>Inténtalo y mejora tu flujo de trabajo en desarrollo C/C++.</h4>
+        </div>
+      </div>
+
+      <div class="preview" data-target="app-3">
+        <i class="fas fa-times close-btn"></i>
+        <div class="preview-content">
+          <img src="img/PyCharm_Icon.svg.png" alt="PyCharm" class="popup-image"/>
+          <h3>PyCharm</h3>
+          <h4>Descripción:</h4>
+          <p>PyCharm es un IDE desarrollado por JetBrains, especializado en Python.</p>
+          <h4>Para qué sirve:</h4>
+          <p>Está diseñado para proporcionar un entorno de desarrollo eficiente para proyectos Python, con soporte para Django y otras tecnologías web.</p>
+          <h4>Lenguajes soportados:</h4>
+          <ul>
+            <li>-Python</li>
+            <li>-JavaScript</li>
+            <li>-HTML/CSS</li>
+            <li>-SQL</li>
+            <li>-Y más a través de plugins.</li>
+          </ul>
+          <h4>Alcance profesional:</h4>
+          <p>Amplio uso en la industria para desarrollo web, análisis de datos y automatización.</p>
+          <h4>Recomendación de uso:</h4>
+          <p>Altamente recomendado para desarrolladores de Python que buscan un entorno robusto y lleno de características.</p>
+          <h4>Tutorial de uso:</h4>
+          <p><strong>Instalación:</strong> Descarga PyCharm desde <a href="https://www.jetbrains.com/pycharm/" target="_blank">JetBrains PyCharm</a>. Instálalo siguiendo las instrucciones.</p>
+          <h4><strong>Primeros pasos:</strong></h4>
+          <ol>
+            <li>1.-Abre PyCharm.</li>
+            <li>2.-Crea un nuevo proyecto en Python o abre uno existente.</li>
+          </ol>
+          <h4><strong>Configuración inicial:</strong></h4>
+          <ol>
+            <li>1.-Configura el intérprete de Python en "Settings".</li>
+            <li>2.-Instala plugins adicionales si es necesario.</li>
+          </ol>
+          <h4><strong>Escribir código:</strong></h4>
+          <ol>
+            <li>1.-Crea un nuevo archivo Python.</li>
+            <li>2.-Escribe y guarda tu código.</li>
+          </ol>
+          <h4><strong>Depuración:</strong></h4>
+          <ol>
+            <li>Configura puntos de interrupción y usa el depurador integrado para ejecutar tu código.</li>
+          </ol>
+          <h4><strong>Extensiones:</strong></h4>
+          <ol>
+            <li>Explora e instala plugins desde el marketplace para ampliar las funcionalidades de PyCharm.</li>
+          </ol>
+          <h4>Ideal para desarrollar con Python de manera eficiente.</h4>
+        </div>
+      </div>
+
+      <div class="preview" data-target="app-4">
+        <i class="fas fa-times close-btn"></i>
+        <div class="preview-content">
+          <img src="img/Thonny_logo.png" alt="Thonny" class="popup-image"/>
+          <h3>Thonny</h3>
+          <h4>Descripción:</h4>
+          <p>Thonny es un IDE simple y amigable para aprender a programar en Python.</p>
+          <h4>Para qué sirve:</h4>
+          <p>Diseñado para principiantes, proporciona una interfaz limpia y funcionalidades de depuración fáciles de usar.</p>
+          <h4>Lenguajes soportados:</h4>
+          <ul>
+            <li>Python</li>
+          </ul>
+          <h4>Alcance profesional:</h4>
+          <p>Principalmente educativo, utilizado en instituciones académicas para enseñar programación.</p>
+          <h4>Recomendación de uso:</h4>
+          <p>Perfecto para principiantes en Python debido a su simplicidad y facilidad de uso.</p>
+          <h4>Tutorial de uso:</h4>
+          <p><strong>Instalación:</strong> Descarga Thonny desde <a href="https://thonny.org/" target="_blank">Thonny</a>. Instálalo siguiendo las instrucciones.</p>
+          <h4><strong>Primeros pasos:</strong></h4>
+          <ol>
+            <li>1.-Abre Thonny.</li>
+            <li>2.-Crea un nuevo archivo Python.</li>
+          </ol>
+          <h4><strong>Escribir código:</strong></h4>
+          <ol>
+            <li>1.-Escribe tu código en el editor.</li>
+            <li>2.-Guarda y ejecuta tu código.</li>
+          </ol>
+          <h4><strong>Depuración:</strong></h4>
+          <ol>
+            <li>Usa las herramientas de depuración integradas para entender el flujo de tu programa.</li>
+          </ol>
+          <h4>Recomendado para aprender Python desde cero.</h4>
+        </div>
+      </div>
+
+      <div class="preview" data-target="app-5">
+        <i class="fas fa-times close-btn"></i>
+        <div class="preview-content">
+          <img src="img/CodeAcademyLogo.png" alt="CodeAcademy" class="popup-image"/>
+          <h3>CodeAcademy</h3>
+          <h4>Descripción:</h4>
+          <p>CodeAcademy es una plataforma interactiva de aprendizaje en línea que ofrece cursos gratuitos en diversos lenguajes de programación.</p>
+          <h4>Para qué sirve:</h4>
+          <p>Proporciona una forma accesible y divertida de aprender a programar, desde HTML y CSS hasta JavaScript y Python.</p>
+          <h4>Lenguajes soportados:</h4>
+          <ul>
+            <li>-HTML/CSS</li>
+            <li>-JavaScript</li>
+            <li>-Python</li>
+            <li>-Java</li>
+            <li>-SQL</li>
+            <li>-!Y mucho más!</li>
+          </ul>
+          <h4>Alcance profesional:</h4>
+          <p>Ideal para principiantes y desarrolladores en formación. Útil para obtener habilidades básicas antes de pasar a entornos de desarrollo más complejos.</p>
+          <h4>Recomendación de uso:</h4>
+          <p>Excelente para quienes desean aprender a programar desde cero con una metodología práctica y atractiva.</p>
+          <h4>Tutorial de uso:</h4>
+          <p><strong>Registro:</strong> Regístrate en <a href="https://www.codecademy.com/" target="_blank">CodeAcademy</a> y elige un curso para empezar.</p>
+          <h4><strong>Primeros pasos:</strong></h4>
+          <ol>
+            <li>1.-Inicia sesión en CodeAcademy.</li>
+            <li>2.-Selecciona un curso y sigue las instrucciones.</li>
+          </ol>
+          <h4>Perfecto para aprender a programar de forma interactiva.</h4>
+        </div>
+      </div>
+
+      <div class="preview" data-target="app-6">
+        <i class="fas fa-times close-btn"></i>
+        <div class="preview-content">
+          <img src="img/IntelliJ_IDEA_Icon.svg.png" alt="IntelliJ IDEA" class="popup-image"/>
+          <h3>IntelliJ IDEA</h3>
+          <h4>Descripción:</h4>
+          <p>IntelliJ IDEA es un potente IDE desarrollado por JetBrains. Es conocido por su excelente soporte para Java, aunque también soporta muchos otros lenguajes de programación.</p>
+          <h4>Para qué sirve:</h4>
+          <p>Está diseñado para el desarrollo de software en Java, pero también es compatible con Kotlin, Groovy, Scala y otros lenguajes. Ideal para proyectos complejos de software empresarial.</p>
+          <h4>Lenguajes soportados:</h4>
+          <ul>
+            <li>Java</li>
+            <li>Kotlin</li>
+            <li>Groovy</li>
+            <li>Scala</li>
+            <li>Python (con plugin)</li>
+            <li>Y más</li>
+          </ul>
+          <h4>Alcance profesional:</h4>
+          <p>IntelliJ IDEA es una herramienta estándar en la industria del desarrollo de software, especialmente en proyectos de gran escala y aplicaciones empresariales.</p>
+          <h4>Recomendación de uso:</h4>
+          <p>Altamente recomendable para desarrolladores serios de Java y otros lenguajes soportados por su robustez y características avanzadas.</p>
+          <h4>Tutorial de uso:</h4>
+          <p><strong>Instalación:</strong> Descarga IntelliJ IDEA desde <a href="https://www.jetbrains.com/idea/" target="_blank">JetBrains</a>. Instálalo siguiendo las instrucciones.</p>
+          <h4><strong>Primeros pasos:</strong></h4>
+          <ol>
+            <li>1.-Abre IntelliJ IDEA.</li>
+            <li>2.-Crea un nuevo proyecto seleccionando "New Project".</li>
+          </ol>
+          <h4><strong>Configuración inicial:</strong></h4>
+          <ol>
+            <li>1.-Selecciona el SDK y el lenguaje de programación que usarás.</li>
+            <li>2.-Configura las dependencias del proyecto.</li>
+          </ol>
+          <h4><strong>Escribir código:</strong></h4>
+          <ol>
+            <li>1.-Crea un nuevo archivo o clase dentro del proyecto.</li>
+            <li>2.-Escribe tu código en el editor.</li>
+          </ol>
+          <h4><strong>Depuración y pruebas:</strong></h4>
+          <ol>
+            <li>Usa las herramientas de depuración y prueba integradas para asegurar la calidad del código.</li>
+          </ol>
+          <h4><strong>Plugins:</strong></h4>
+          <ol>
+            <li>Instala plugins adicionales desde el Marketplace de IntelliJ para ampliar sus funcionalidades.</li>
+          </ol>
+          <h4>Imagen sugerida: Captura de pantalla de IntelliJ IDEA con un proyecto Java abierto.</h4>
+        </div>
+      </div>
+
+      <div class="preview" data-target="app-7">
+        <i class="fas fa-times close-btn"></i>
+        <div class="preview-content">
+          <img src="img/gpt5.png" alt="ChatGPT" class="popup-image"/>
+          <h3>ChatGPT</h3>
+          <h4>Descripción:</h4>
+          <p>ChatGPT es un modelo de lenguaje avanzado desarrollado por OpenAI, capaz de generar texto y mantener conversaciones naturales con los usuarios.</p>
+          <h4>Para qué sirve:</h4>
+          <p>Utilizado en aplicaciones de chatbots, asistentes virtuales, generación de contenido y mucho más, ofreciendo respuestas coherentes y contextualmente relevantes.</p>
+          <h4>Lenguajes soportados:</h4>
+          <ul>
+            <li>-Inglés</li>
+            <li>-Español</li>
+            <li>-Francés</li>
+            <li>-Alemán</li>
+            <li>-Italiano</li>
+            <li>-Portugués</li>
+            <li>-Y muchos más.</li>
+          </ul>
+          <h4>Alcance profesional:</h4>
+          <p>Ampliamente utilizado en la industria para mejorar la interacción con los usuarios, automatizar respuestas y mejorar la eficiencia del servicio al cliente.</p>
+          <h4>Recomendación de uso:</h4>
+          <p>Altamente recomendable para desarrolladores y empresas que buscan integrar capacidades avanzadas de procesamiento de lenguaje natural en sus aplicaciones.</p>
+          <h4>Tutorial de uso:</h4>
+          <p><strong>API:</strong> Integra ChatGPT en tu aplicación utilizando la API de OpenAI. Visita <a href="https://beta.openai.com/signup/" target="_blank">OpenAI API</a> para más información.</p>
+          <h4><strong>Primeros pasos:</strong></h4>
+          <ol>
+            <li>1.-Regístrate en OpenAI y obtiene tu clave API.</li>
+            <li>2.-Configura tu entorno de desarrollo para hacer solicitudes HTTP.</li>
+          </ol>
+          <h4><strong>¿Cómo hacerle buenas preguntas o prompts a ChatGPT?:</strong></h4>
+          <ol>
+            <li>-Si algo hemos aprendido a lo largo de nuestra carrera, es a hacerle buenas preguntas a ChatGPT, mientras más precisas sean las preguntas y más información le proporcionemos al respecto sobre nuestro tema, mejores serán sus respuestas. He aquí algunos consejos:</li>
+            <li>-Proporciona detalles concretos sobre lo que necesitas. Evita preguntas generales como "Háblame sobre programación" y opta por algo más específico como "¿Cuáles son las mejores prácticas para el manejo de errores en Python?".</li>
+            <li>-Brinda contexto suficiente para que ChatGPT entienda mejor tu pregunta. Incluye información relevante sobre el tema, el propósito de tu consulta y cualquier otro detalle que pueda ayudar a enfocar la respuesta.</li>         
+            <li>-Indica claramente para qué necesitas la información. Por ejemplo, "Estoy escribiendo un artículo sobre las mejores prácticas en el desarrollo web, ¿puedes darme una introducción sobre la importancia de la accesibilidad en los sitios web?".</li>
+            <li>-Divide las preguntas complejas en partes más manejables. En lugar de una pregunta extensa, usa varias preguntas más pequeñas y directas.
+            </li>
+            <li>-Si es posible, incluye ejemplos que ilustren lo que estás preguntando. Esto puede ayudar a ChatGPT a entender mejor el contexto y proporcionar una respuesta más precisa.</li>          
+             <li>-Define claramente cualquier restricción o requisito específico, como el tono (formal o informal), la longitud deseada de la respuesta o el formato (lista, párrafo, etc.).
+            </li>
+            
+            <li>-Las preguntas abiertas son útiles para obtener información detallada y exploratoria, mientras que las preguntas cerradas son útiles para respuestas directas y específicas.
+            </li>
+            <LI>-Si la respuesta inicial no es lo que esperabas, revisa tu pregunta para ver si puede ser más clara o específica, y vuelve a intentarlo. A menudo, ajustar la formulación de la pregunta puede mejorar significativamente la calidad de la respuesta.</LI>
+          </ol>
+          <h4><strong>Mejores prácticas:</strong></h4>
+          <ol>
+            <li>1.-Asegúrate de manejar los errores y excepciones adecuadamente.</li>
+            <li>2.-Optimiza las llamadas a la API para mejorar la eficiencia y reducir costos.</li>
+          </ol>
+          <h4>Incorpora ChatGPT para transformar la forma en que interactúas con los usuarios.</h4>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contenedor para la imagen ampliada -->
+    <div class="expanded-image" id="expanded-image" style="display:none;">
+      <img src="" alt="Expanded Image"/>
+    </div>
+  
+  </main>
+<!--FOOTER-->
+<footer class="footer section">
+  <div class="footercontainer container grid">
+    <div class="footercontent">
+      <a href="#" class="footerL">
+        <img src="img/favicon.png" alt="" class="footerL-img" />
+        DevScape
+      </a>
+
+      <p class="footerdescription">
+        DevScape es tu aliado en el aprendizaje del desarrollo web. Proporcionamos herramientas y recursos para que puedas aprender y crecer en tu carrera de desarrollador.
+      </p>
+
+      <div class="footersocial">
+        <a href="#" target="_blank" class="footersocial-link">
+          <i class="bx bxl-facebook"></i>
+        </a>
+        <a href="#" target="_blank" class="footersocial-link">
+          <i class="bx bxl-instagram-alt"></i>
+        </a>
+        <a href="#" target="_blank" class="footersocial-link">
+          <i class="bx bxl-twitter"></i>
+        </a>
+        <a href="#" target="_blank" class="footersocial-link">
+          <i class="bx bxl-linkedin"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footercontent">
+      <h3 class="footertitle">Servicios</h3>
+      <ul class="footerlinks">
+        <li>
+          <a href="#" class="footerlink">Desarrollo Web</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">Consultoría</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">Soporte Técnico</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">Capacitación</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footercontent">
+      <h3 class="footertitle">Nosotros</h3>
+      <ul class="footerlinks">
+        <li>
+          <a href="#" class="footerlink">Mariano Pinto Saucedo</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">Natalia Revilla Cortez</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">Leonardo Padilla Sandoval</a>
+          <li>
+            <a href="#" class="footerlink">Dalire Cardona Durán</a>
+          </li>
+          <li>
+            <a href="#" class="footerlink">José Manuel Navia Sanchez</a>
+          </li>
+           <br>
+           <br>
+           <br>
+           <li>
+            <a href="#" class="footerlink">Este proyecto fue creado para la feria de innovación y tecnología "TecnoUPSA".</a>
+          </li>
+        </ul>
+    </div>
+
+    <div class="footercontent">
+      <h3 class="footertitle">Enlaces Útiles</h3>
+      <ul class="footerlinks">
+        <li>
+          <a href="#" class="footerlink">Blog</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">FAQs</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">Términos y Condiciones</a>
+        </li>
+        <li>
+          <a href="#" class="footerlink">Política de Privacidad</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <span class="footercopy">Copyright © 2024 DevScape. Todos los derechos reservados.</span>
+</footer>
+
+  <!--FOOTER-->
+  <a href="#" class="scrollup" id="scroll-up">
+    <i class="bx bx-up-arrow-alt scrollupicon"></i>
+  </a>
+
+  <!--JAVASCRIPT-->
+  <script src="js/scrollreveal.min.js"></script>
+  <script src="js/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <script>
+    // JavaScript para abrir y cerrar los popups
+    document.addEventListener('DOMContentLoaded', () => {
+      const previewContainer = document.querySelector('.products-preview');
+      const previewBoxes = previewContainer.querySelectorAll('.preview');
+      const productButtons = document.querySelectorAll('.productbutton');
+      const expandedImageContainer = document.getElementById('expanded-image');
+      const expandedImage = expandedImageContainer.querySelector('img');
+
+      productButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const name = button.parentNode.getAttribute('data-name');
+          previewContainer.classList.add('active');
+          previewBoxes.forEach(preview => {
+            const target = preview.getAttribute('data-target');
+            if (name === target) {
+              preview.classList.add('active');
+            }
+          });
+        });
+      });
+
+      previewBoxes.forEach(close => {
+        close.querySelector('.close-btn').addEventListener('click', () => {
+          close.classList.remove('active');
+          previewContainer.classList.remove('active');
+        });
+
+        // Añadir el evento click a las imágenes dentro de los popups
+        close.querySelectorAll('.popup-image').forEach(img => {
+          img.addEventListener('click', () => {
+            expandedImage.src = img.src;
+            expandedImageContainer.style.display = 'flex';
+          });
+        });
+      });
+
+      // Cerrar la imagen ampliada al hacer clic fuera de ella
+      expandedImageContainer.addEventListener('click', () => {
+        expandedImageContainer.style.display = 'none';
+      });
+    });
+
+    // Typed.js para la animación de código
+    var options = {
+      strings: [
+        'console.log("Hola Mundo!");',
+        'let x = 10;',
+        'for(let i = 0; i < x; i++) {',
+        '  console.log(i);',
+        '}',
+      ],
+      typeSpeed: 50,
+      backSpeed: 50,
+      loop: true,
+    };
+
+    var typed = new Typed('#typed-code', options);
+  </script>
+</body>
+</html>

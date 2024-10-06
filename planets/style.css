@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'AvenirNextWorldMedium';
+    src: url('avenir-next-world-medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Aplicar la fuente a los textos */
+  p, li, span, div {
+    font-family: 'AvenirNextWorldMedium', sans-serif;
+  }
+  

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de la Tierra</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh; /* Altura completa de la ventana */
+            background-color: #222;
+            color: white;
+            overflow: hidden; /* Evitar el desplazamiento */
+        }
+        #canvas {
+            width: 50%; /* La mitad de la pantalla para el lienzo de Three.js */
+            height: 100vh; /* Altura completa */
+            position: relative; /* Cambiar a posición relativa */
+        }
+        .info-container {
+            width: 50%; /* Ocupa la mitad de la pantalla */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centrar verticalmente */
+            align-items: flex-start; /* Alinear a la izquierda */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Fondo con algo de transparencia */
+            border-radius: 10px; /* Esquinas redondeadas */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Sombra suave */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="info-container">
+        <h1>Tierra</h1>
+        <p>La Tierra es el tercer planeta del sistema solar.</p>
+        <p>Su radio es de 6371 km y su distancia promedio del Sol es de aproximadamente 149.6 millones de kilómetros.</p>
+        <button onclick="window.history.back()">Volver</button> <!-- Este botón te llevará de vuelta a la página del sistema solar -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Configuración de la escena
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), alpha: true });
+        renderer.setSize(window.innerWidth * 0.5, window.innerHeight); // Tamaño del lienzo
+
+        // Luz
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.set(0, 0, 0);
+        scene.add(pointLight);
+
+        // Crear un fondo de estrellas usando una esfera
+        const starTexture = new THREE.TextureLoader().load('estrellasback.jpg'); // Asegúrate de que el archivo de textura esté en la misma carpeta
+        const starGeometry = new THREE.SphereGeometry(100, 64, 64); // Aumentar el tamaño para cubrir toda la escena
+        const starMaterial = new THREE.MeshBasicMaterial({ map: starTexture, side: THREE.BackSide }); // Material en la parte interior de la esfera
+        const stars = new THREE.Mesh(starGeometry, starMaterial);
+        scene.add(stars); // Añadir la esfera de estrellas a la escena
+
+        // Crear la Tierra
+        const earthTexture = new THREE.TextureLoader().load('tierra.jpg'); // Asegúrate de que el archivo de textura esté en la misma carpeta
+        const earthGeometry = new THREE.SphereGeometry(2, 64, 64); // Radio de 2 para el tamaño del planeta
+        const earthMaterial = new THREE.MeshStandardMaterial({ map: earthTexture });
+        const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+        scene.add(earth);
+
+        // Posicionar la cámara
+        camera.position.set(2, 0, 5); // Ajustar la posición para ver tanto la Tierra como el fondo
+
+        // Animar la Tierra
+        function animate() {
+            requestAnimationFrame(animate);
+            earth.rotation.y += 0.01; // Rotación de la Tierra
+            renderer.render(scene, camera);
+        }
+
+        // Manejar el redimensionamiento de la ventana
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth * 0.5, window.innerHeight);
+        });
+
+        animate(); // Iniciar la animación
+    </script>
+</body>
+</html>
+    
