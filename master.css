@@ -1,0 +1,946 @@
+@font-face {
+    font-family: 'avenir-next-world-medium';
+    src: url('./avenir-next-world-medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+
+    font-family: 'AvenirNextWorldMedium';
+    src: url('./avenir-next-world-medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+ /* Importar la fuente Stolzl-Bold en formato .ttf */
+@font-face {
+    font-family: 'StolzlBold';
+    src: url('./fonts/Stolzl-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BurfordRusticLine';
+    src: url('./fonts/BurfordRusticLine-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Steics';
+    src: url('fonts/steics__.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root{
+ --text: 'AvenirNextWorldMedium', sans-serif;
+ --title-main:'StolzlBold', sans-serif;
+}
+
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    /* font-family: 'Stolzl-Bold', sans-serif; */
+}
+
+body{
+    background-color: black;
+    overflow-x: hidden;
+}
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+h3{
+    font-family: 'BurfordRusticLine',sans-serif;
+}
+.enlace{
+    font-family: 'BurfordRusticLine',sans-serif;
+}
+.title-main{
+    text-transform: uppercase;
+    font-family: 'Stolzl-Bold', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+    letter-spacing: 0.1em;
+}
+a{
+    text-decoration: none;
+    color: #f1f1f1;
+    font-weight: bold;
+    font-size: 18px;
+}
+img{
+    width: 100%;
+}
+/* Contenedor - del banner */
+.contenedor{
+    display: block;
+}
+.text-secundario{
+    font-family: var(--text);
+    font-weight: normal;
+   color:white;
+}
+/* Menu - contiene la parte superior */
+.menu{
+    width: 80%;
+    margin-inline:auto;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+@media (min-width:768px) {
+    .menu{
+        flex-direction: row;
+        align-items: center;
+    }
+}
+/* Logo */
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 10px;
+}
+.logo--nombre{
+    color: #f1f1f1;
+    font-weight: bold;
+    font-size: 50px;
+    font-family: 'BurfordRusticLine',sans-serif;
+}
+.logo--nombre span{
+    color: rgb(248,194,0);
+}
+@media (min-width:768px) {
+    .logo--nombre{
+        font-size: 30px;
+    }
+    .number h1{
+        opacity: 0;
+    }
+    .title-nunmer{
+        display: none;
+    }
+}
+.number h1{
+    opacity: 1;
+}
+.logo img{
+    width: 11rem;
+    height: 11rem;
+    cursor: pointer;
+}
+@media (min-width:768px) {
+    .logo img{
+        display:block;
+    }
+}
+
+/* Menu - contiene la parte superior */
+#hamburguesa{
+    width: 3rem;
+    height: 3rem;
+    /* background: #f1f1f1; */
+    color:#f1f1f1;
+    font-size: 2rem;
+    cursor: pointer;
+    font-weight: 900;
+    display: none;
+}
+.menu{
+    width: 95%;
+    margin-inline:auto;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+@media (max-width:468px) {
+    .menu{
+        flex-direction: row;
+        align-items: center;
+    }
+    #hamburguesa{
+        /* display: block;; */
+    }
+    .navegacion li a{
+        padding: 5px;
+    }
+    .navegacion{
+        gap: 10px;
+    }
+}
+@media (min-width:768px) {
+    .menu{
+        flex-direction: row;
+        align-items: center;
+    }
+    .navegacion{
+        gap: 10px;
+    }
+}
+.menu--navegacion{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 9rem;
+    /* display: none; */
+
+}
+@media (min-width:768px) {
+    .menu--navegacion{
+        position: static;
+        width: auto;
+    }
+    /* #hamburguesa{
+        display: block;
+    } */
+}
+/* Contenedor lista navegacion */
+.navegacion{
+    background-color: red;
+    padding: 10px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    z-index: 1;
+}
+@media (min-width:768px) {
+    .navegacion{
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+.navegacion li{
+    width: 8rem;
+    font-family: 'BurfordRusticLine', sans-serif !important;
+    text-align: center;
+}
+.navegacion li a{
+    display: block;
+    padding: 10px;
+}
+.navegacion li:last-of-type{
+    width: auto;
+}
+.navegacion li a:hover{
+    background-color: rgb(248,194,0);
+}
+.navegacion li:last-of-type:hover{
+    background-color: transparent;
+}
+
+/* Clase para que aparezca el contenido */
+.resposive--dinamico{
+    display: block;
+}
+/* Contenedor Banner */
+.universo{
+    background-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.62)50%, black 100%), url('./img/universo.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+    overflow: hidden;
+}
+.contenedor--universo{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 95vh;
+}
+@media (min-width:768px) {
+    .contenedor--universo{
+        flex-direction: row;
+    }
+}
+.universo--info{
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+@media (min-width:768px) {
+    .universo--info{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+}
+.btn--info{
+margin-top: 30px;
+}
+.btn--info a{
+    background-color: rgb(248,194,0);
+    border: 2px solid rgb(248,194,0);
+    border-radius: 10px;
+    padding: 15px;
+    color: black;
+}
+.btn--info a:hover{
+    background-color: #5e7c93;
+    color: white;
+}
+/* Planetas- animacion */
+.planetas{
+    width: 80%;
+    height: 70%;
+    padding: 20px 10px;
+    position: relative;
+}
+.planetas img{
+    position: absolute;
+    max-width: 215px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+@media (min-width:768px) {
+    .planetas img{
+        margin-block: auto;
+        margin-inline-start:auto;
+        max-width: 600px;
+    }
+}
+@media (min-width:1024px) {
+    .planetas img{
+        max-width: 800px;
+    }
+}
+.planetas li:nth-child(odd) img{
+    animation: rotacionImpar 10s linear infinite;
+}
+.planetas li:nth-child(even) img{
+    animation: rotacionPar 10s linear infinite;
+}
+.planetas li:nth-child(1) img{
+    animation: rotacionSol 50s linear infinite;
+}
+@keyframes rotacionSol {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+@keyframes rotacionImpar {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+@keyframes rotacionPar {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+/* Scroll infinito */
+
+
+
+.contenedor--planetas{
+    padding-top: 40px;
+    padding-bottom: 10px;
+    display: none;
+    height: 9rem;
+    
+}
+
+.lista--planetas{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    gap: 10px;
+    padding: 20px 10px;
+    /* overflow: hidden; */
+    position: relative;
+
+}
+.lista--planetas::-webkit-scrollbar{
+    width: 0;
+}
+.lista--planetas li{
+    position: relative;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #0f0f0fec;
+    font-family: var(--text);
+    transition: background-color .5s ease-in;
+}
+.hover-data-planes {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7); 
+    /* background-color: rgb(248,194,0.7); */
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    top: -90px;
+    width: 10rem;
+    left: 0px; /* Ajusta según tu diseño */
+    z-index: 10;
+}
+
+/* .hover-data-planes {
+    position: absolute;
+   /* top: -50px;
+    left: 60%;
+     transform: translateX(-50%); */
+    /* background-color: rgba(0, 0, 0, 0.8);  */
+    /* background-color: rgb(248,194,0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    display: none;
+    z-index: 1000; */
+/* }  */
+
+.lista--planetas li:hover{
+    background-color: #5e7c93;
+    cursor: pointer;
+}
+.lista--planetas li img{
+    width: 100px;
+     
+}
+.lista--planetas p{
+    color: #f1f1f1;
+    font-weight: bold;
+}
+.lista--planetas li{
+    animation: scrollInfinito 15s linear infinite;
+}
+@keyframes scrollInfinito{
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(calc(-210px * 6));
+    }
+}
+
+/* Spinner */
+.lds-ripple {
+    display: flex;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+  }
+  .lds-ripple div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border: 4px solid rgb(248,194,0);
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes lds-ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    4.9% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    5% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+
+
+  /* estilo de banner 01  *//* Reset CSS */
+
+.universo-neos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 50px;
+    background-image: url('./img/NEOS.jpg'); /* Reemplaza con la imagen correcta */
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    position: relative;
+}
+/* .universo-neos:hover{filter: grayscale(80%);} */
+.number h1 {
+    font-size: 200px;
+    font-weight: bold;
+    background: url('./img/NEOS2.jpg'); /* Reemplaza con la imagen correcta */
+    background-clip: text;
+    color: #5e7c93;
+    display: block;
+}
+
+.content {
+    max-width: 600px;
+}
+.title-neo{
+    font-family: var(--title-main);
+}
+.title-neo, .text-neo{
+    color:white;
+    padding: 8px;
+}
+.btn--info-main{
+    display:block;
+    border-radius: 5px;
+    background:rgb(248,194,0);
+}
+.btn--info-main a{
+    font-family: 'BurfordRusticLine';
+    font-size: 20px;
+    text-align: center;
+    color: #0f0f0fec;
+    padding: 20px;
+    border-radius: 15px;
+    display: block;
+    width: 100%;
+}
+.content h2 {
+    font-size: 50px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.content p {
+    line-height: 1.6;
+    font-size: 18px;
+    /* font-family: var(--text); */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .universo-neos, .universo-planetas {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        padding: 20px;
+    }
+
+    .number h1 {
+        font-size: 100px;
+        display: none;
+        text-align: center;
+    }
+
+    .content, .content-planetas {
+        text-align: center;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .title-neo {
+        font-size: 28px;
+        font-family: var(--title-main);
+    }
+
+    .text-secundario {
+        font-size: 16px;
+    }
+
+    .btn--info-main {
+        max-width: 100%;
+    }
+
+    .btn--info-main a {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
+/*  stylo del banner  02  conoce los planetas */
+
+  .universo-planetas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 50px;
+    background-image: url('./img/saturno.jpg'); /* Reemplaza con la imagen correcta */
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.number h1 {
+    font-size: 200px;
+    font-weight: bold;
+    background: url('./img/sol.jpg'); /* Reemplaza con la imagen correcta */
+    background-clip: text;
+    color: #9ebfd9;
+}
+
+.content-planetas {
+    max-width: 600px;
+    background-color: transparent;
+}
+
+
+/* .btn--info-main{
+    border-radius: 15px; 
+    background: #9ebfd9;
+} */
+
+.content-planetas h2 {
+    font-size: 50px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.content-planetas p {
+    line-height: 1.6;
+    font-size: 18px;
+    /* font-family: var(--text); */
+}
+
+
+/*  stylo del banner  03  sobre el sistema solar en 3d */
+
+/* Estilo general para pantallas grandes */
+.universo-sistema {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+    padding: 0 50px;
+    position: relative;
+}
+
+.solsection-left-sol img {
+    width: 500px; /* Tamaño de la imagen del sol en pantallas grandes */
+    animation: rotarSol 10s linear infinite; /* Animación de rotación del sol */
+}
+
+.title-nunmer {
+    font-size: 5rem;
+    color: #fff;
+}
+
+.title-neo {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.text-secundario {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+/* .btn--info-main a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f5a623;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+} */
+
+.btn--info-main a:hover {
+    /* background-color: #e5941b; */
+}
+
+/* Animación de rotación para la imagen */
+@keyframes rotarSol {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estilos para pantallas medianas */
+@media (max-width: 1024px) {
+    .universo-sistema {
+        flex-direction: column;
+        padding: 0 20px;
+        height: auto;
+    }
+
+    .solsection-left-sol img {
+        width: 400px; /* Ajustar el tamaño del sol en pantallas medianas */
+    }
+
+    .title-nunmer {
+        font-size: 4rem;
+    }
+
+    .title-neo {
+        font-size: 2.5rem;
+    }
+
+    .text-secundario {
+        font-size: 1rem;
+    }
+
+    .btn--info-main a {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .universo-sistema {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 10px;
+        height: auto;
+    }
+
+    .solsection-left-sol img {
+        width: 250px; /* Ajustar el tamaño del sol en móviles */
+    }
+
+    .title-nunmer {
+        font-size: 3rem;
+    }
+
+    .title-neo {
+        font-size: 2rem;
+    }
+
+    .text-secundario {
+        font-size: 0.9rem;
+    }
+
+    .btn--info-main a {
+        font-size: 1rem;
+        padding: 20px 10px;
+    }
+}
+
+/* Estilos para pantallas extra pequeñas */
+@media (max-width: 480px) {
+    .universo-sistema {
+        padding: 0 5px;
+    }
+
+    .solsection-left-sol img {
+        width: 200px; /* Ajustar el tamaño del sol en pantallas extra pequeñas */
+    }
+
+    .title-nunmer {
+        font-size: 2.5rem;
+    }
+
+    .title-neo {
+        font-size: 1.5rem;
+    }
+
+    .text-secundario {
+        font-size: 0.8rem;
+    }
+
+    .btn--info-main a {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+    }
+}
+
+/* los estilo de Footer */
+.footer {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), 
+    url('./img/universo.jpeg') no-repeat center center/cover;
+     padding: 50px 0;
+    /* background: url('./img/fondo_tierra.jpg') no-repeat center center/cover; */
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Sección de contacto */
+.footer-section.contact {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section.contact h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-section.contact p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.footer-section.contact a {
+    color: #9ebfd9;
+    text-decoration: none;
+}
+
+/* Sección de suscripción */
+.footer-section.subscribe {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section.subscribe p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.footer-section.subscribe form {
+    display: flex;
+    align-items: center;
+}
+
+.footer-section.subscribe input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.footer-section.subscribe button {
+    background-color: #9ebfd9;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Sección de enlaces */
+.footer-section.links {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-column {
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #9ebfd9;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #9ebfd9;
+}
+
+/* Responsive Design */
+/* Responsive Styles */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    footer .column {
+        margin: 20px 0;
+    }
+
+    footer .subscribe {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    footer .subscribe input[type="email"] {
+        margin-bottom: 10px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    footer .subscribe button {
+        width: 100%;
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 10px;
+    }
+
+    footer .column h3 {
+        font-size: 16px;
+    }
+
+    footer .subscribe input[type="email"] {
+        width: 100%;
+    }
+
+    footer .subscribe button {
+        width: 100%;
+    }
+}
