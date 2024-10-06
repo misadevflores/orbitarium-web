@@ -137,84 +137,83 @@ img{
     }
 }
 
-/* Menu - contiene la parte superior */
+/* EFECTO AUMBUERGESA */
 #hamburguesa{
     width: 3rem;
     height: 3rem;
-    /* background: #f1f1f1; */
-    color:#f1f1f1;
-    font-size: 2rem;
+    color: #f1f1f1;
+    font-size: 1.5rem;
     cursor: pointer;
     font-weight: 900;
-    /* display: block; */
+    position: absolute;
+    top: 90px;    /* Ajusta la posición vertical si es necesario */
+    right: 0;  /* Alinea el ícono hacia la derecha */
+    display: block;
 }
+
 .menu{
     width: 95%;
-    margin-inline:auto;
+    margin-inline: auto;
     padding-top: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;  /* Cambiado para alineación horizontal */
+    justify-content: space-between;  /* Espaciado entre logo e icono de hamburguesa */
+    align-items: center;  /* Centrar elementos verticalmente */
     position: relative;
-    /* display: block; */
-}
-@media (max-width:468px) {
-    .menu{
-        flex-direction: row;
-        align-items: center;
-        /* display: block; */
-    }
-    #hamburguesa{
-        /* display: block; */
-    }
-    .navegacion li a{
-        padding: 5px;
-    }
-    .navegacion{
-        gap: 10px;
-    }
-}
-@media (min-width:768px) {
-    .menu{
-        flex-direction: row;
-        align-items: center;
-    }
-    .navegacion{
-        gap: 10px;
-    }
-}
-.menu--navegacion{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 9rem;
-    display: block;
-
 }
 
-@media (min-width:768px) {
-    .menu--navegacion{
-        position: static;
-        width: auto;
-    }
-    #hamburguesa{
-        display: block;
-    }
-}
 /* Contenedor lista navegacion */
 .navegacion{
-    background-color: red;
     padding: 10px;
     background-color: black;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     gap: 60px;
     position: relative;
     z-index: 1;
 }
-@media (min-width:768px) {
+
+@media (max-width: 768px) {
+    .menu{
+        flex-direction: row;
+        align-items: center;
+    }
     .navegacion{
+        gap: 0px;
+        flex-direction: column;
+    }
+    #hamburguesa{
+        display: block; /* Muestra el icono de hamburguesa en móvil */
+    }
+
+    .menu--navegacion {
+        display: none;  /* Oculta el menú en móvil hasta que se haga clic */
+    }
+
+    .menu--navegacion.resposive--dinamico {
+        display: flex;  /* Muestra el menú cuando se hace clic en el icono de hamburguesa */
+        flex-direction: column;
+        position: absolute;
+        top: 9rem;
+        width: 100%;
+        background-color: black;
+        z-index: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu{
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #hamburguesa{
+        display: none;  /* Oculta el icono de hamburguesa en pantallas grandes */
+    }
+
+    .menu--navegacion {
+        display: flex;  /* Muestra el menú siempre en pantallas grandes */
         flex-direction: row;
         gap: 20px;
     }
@@ -231,17 +230,7 @@ img{
 .navegacion li:last-of-type{
     width: auto;
 }
-.navegacion li a:hover{
-    background-color: rgb(248,194,0);
-}
-.navegacion li:last-of-type:hover{
-    background-color: transparent;
-}
 
-/* Clase para que aparezca el contenido */
-.resposive--dinamico{
-    display: block;
-}
 /* Contenedor Banner */
 .universo{
     background-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.62)50%, black 100%), url('./img/universo.jpeg');

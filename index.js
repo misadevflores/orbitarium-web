@@ -4,11 +4,11 @@ const navegacion = document.getElementById('menu--navegacion');
 hamburguesa.addEventListener('click', () => {
     navegacion.classList.toggle('resposive--dinamico');
 
-    // Cambia el texto entre '+' y 'x'
-    if (hamburguesa.textContent === '🚀') {
-        hamburguesa.textContent = '🧑‍🚀';  // Cambia a 'x' cuando se hace clic
+    // Cambia el icono entre 🚀 y 🧑‍🚀
+    if (hamburguesa.textContent === '🚀+') {
+        hamburguesa.textContent = '🧑‍🚀x';  // Cambia el icono cuando se hace clic
     } else {
-        hamburguesa.textContent = '🚀';  // Vuelve a '+' cuando se hace clic de nuevo
+        hamburguesa.textContent = '🚀+';  // Vuelve al icono original
     }
 });
 
